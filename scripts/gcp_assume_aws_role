@@ -1,9 +1,4 @@
 #!/usr/bin/env bash
-
-GCP_PROJECT_ID=franzramadhan-lab-413813
-GCP_SA_EMAIL=aws-gcp-serviceaccount@franzramadhan-lab-413813.iam.gserviceaccount.com
-AWS_IAM_ROLE_ARN=arn:aws:iam::454130083094:role/Custom_External_Gcp_WebIdentity_franzramadhan_com
-
-GCP_ID_TOKEN=$(gcloud auth print-identity-token --impersonate-service-account=$GCP_SA_EMAIL --project $GCP_PROJECT_ID --verbosity=error)
+GCP_ID_TOKEN=$(gcloud auth print-identity-token --impersonate-service-account=$GCP_SERVICE_ACCOUNT_EMAIL --project $GCP_PROJECT_ID --verbosity=error)
 AWS_STS_TOKEN=$(aws sts assume-role-with-web-identity --role-arn $AWS_IAM_ROLE_ARN --role-session-name gcp-franzramadhan --web-identity-token $GCP_ID_TOKEN)
 echo $AWS_STS_TOKEN | jq -r '{"Version":1} as $version| $version + '.Credentials''

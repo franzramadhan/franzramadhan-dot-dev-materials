@@ -1,3 +1,5 @@
+data "google_project" "this" {}
+
 resource "google_service_account" "this" {
   account_id   = var.sa_account_id
   display_name = var.sa_account_id

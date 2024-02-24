@@ -14,8 +14,6 @@ data "terraform_remote_state" "aws_iam_role" {
   }
 }
 
-data "google_project" "this" {}
-
 resource "google_iam_workload_identity_pool" "this" {
   workload_identity_pool_id = var.workload_identity_pool_id
   display_name              = var.workload_identity_pool_id
@@ -41,5 +39,5 @@ resource "google_iam_workload_identity_pool_provider" "this" {
 resource "google_service_account_iam_member" "this" {
   service_account_id = data.terraform_remote_state.gcp_service_account.outputs.service_account_id
   role               = "roles/iam.workloadIdentityUser"
-  member             = "principalSet://iam.googleapis.com/projects/${data.google_project.this.number}/locations/global/workloadIdentityPools/${google_iam_workload_identity_pool.this.workload_identity_pool_id}/attribute.aws_role/${split("/",split(":", data.terraform_remote_state.aws_iam_role.outputs.aws_iam_role_arn)[5])[1]}"
+  member             = "principalSet://iam.googleapis.com/projects/${data.terraform_remote_state.gcp_service_account.outputs.gcp_project_number}/locations/global/workloadIdentityPools/${google_iam_workload_identity_pool.this.workload_identity_pool_id}/attribute.aws_role/${split("/",split(":", data.terraform_remote_state.aws_iam_role.outputs.aws_iam_role_arn)[5])[1]}"
 }

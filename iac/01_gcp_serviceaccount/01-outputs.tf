@@ -1,3 +1,11 @@
+output "gcp_project_id" {
+    value = data.google_project.this.id
+}
+
+output "gcp_project_number" {
+    value = data.google_project.this.number
+}
+
 output "service_account_email" {
     value = google_service_account.this.email
 }
