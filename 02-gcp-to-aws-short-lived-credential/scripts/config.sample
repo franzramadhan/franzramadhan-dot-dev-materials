@@ -1,0 +1,6 @@
+[profile gcp-to-aws]
+credential_process=/usr/local/bin/gcp_assume_aws_role
+role_session_name=gcp_assumerole_webidentity_franzramadhan
+region=us-east-1
+cli_pager=cat
+output=json

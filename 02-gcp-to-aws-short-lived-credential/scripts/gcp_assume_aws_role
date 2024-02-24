@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+source .env
 GCP_ID_TOKEN=$(gcloud auth print-identity-token --impersonate-service-account=$GCP_SERVICE_ACCOUNT_EMAIL --project $GCP_PROJECT_ID --verbosity=error)
 AWS_STS_TOKEN=$(aws sts assume-role-with-web-identity --role-arn $AWS_IAM_ROLE_ARN --role-session-name gcp-franzramadhan --web-identity-token $GCP_ID_TOKEN)
 echo $AWS_STS_TOKEN | jq -r '{"Version":1} as $version| $version + '.Credentials''
