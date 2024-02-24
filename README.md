@@ -1,1 +1,3 @@
-# Short-lived credential using OIDC Authentication between AWS and GCP
+# franzramadhan.dev blog materials
+
+Materials for [https://franzramadhan.dev](https://franzramadhan.dev)
