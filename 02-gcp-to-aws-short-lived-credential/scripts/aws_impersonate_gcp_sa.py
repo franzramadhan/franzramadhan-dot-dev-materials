@@ -81,7 +81,7 @@ def main() -> None:
     
     load_dotenv()
 
-    parser = configargparse.ArgParser(description='Get prefix list IPs from particular AWS region.')
+    parser = configargparse.ArgParser(description='Get service-account access_token from AWS IAM role credential.')
     parser.add_argument("--gcp-project-number", dest='gcp_project_number' , env_var='GCP_PROJECT_NUMBER', help='gcp project number', required=True, type=str )
     parser.add_argument("--gcp-workload-identity-pool-id", dest='gcp_workload_identity_pool_id', env_var='GCP_WI_POOL_ID', help='gcp workload-identity pool-id', required=True, type=str )
     parser.add_argument("--gcp-workload-identity-provider-id", dest='gcp_workload_identity_provider_id', env_var='GCP_WI_PROVIDER_ID', help='gcp workload-identity pool-number', required=True, type=str )
